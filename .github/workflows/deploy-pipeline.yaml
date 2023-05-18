@@ -48,6 +48,11 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      - name: check vars
+        run: |
+            echo ${{ github.sha }}
+            echo ${{ secrets.github_token }}
+            echo ${{ github.run_number }}
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
@@ -59,4 +64,3 @@ jobs:
           body: New release for ${{ github.sha }}. Release notes can be found in the docs.
           draft: false
           prerelease: false
-          
